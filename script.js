@@ -1,22 +1,12 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Attach an event listener to the form submission
-    const form = document.getElementById('loginForm');
-    form.addEventListener('submit', getFormValue);
-});
-
-function getFormValue(event) {
-    // Prevent the form from submitting and refreshing the page
-    event.preventDefault();
-
-    // Get the values from the form fields
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-
-    // Combine the first and last names
-    const fullName = `${firstName} ${lastName}`;
-
-    // Display the full name using alert
-    alert(fullName);
+// This function will be called when the form is submitted
+function getFormvalue() {
+  // Get the values of First Name and Last Name from the form
+  const firstName = document.getElementById("firstName").value;
+  const lastName = document.getElementById("lastName").value;
+  
+  // Combine First Name and Last Name and display them in an alert
+  alert(firstName + " " + lastName);
+  
+  // Return false to prevent the form from actually submitting and refreshing the page
+  return false;
 }
-
-
