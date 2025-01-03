@@ -1,13 +1,32 @@
 // This function will be called when the form is submitted
-// This function will be called when the form is submitted
-function getFormvalue() {
-  // Get the values of First Name and Last Name from the form
-  const firstName = document.getElementById("firstName").value;
-  const lastName = document.getElementById("lastName").value;
-  
-  // Combine First Name and Last Name and display them in an alert
-  alert(firstName + " " + lastName);
-  
-  // Return false to prevent the form from actually submitting and refreshing the page
-  return false;
-}
+// Ensure DOM is fully loaded before running the logic
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("login-form");
+  const existingButton = document.getElementById("existing");
+
+  // Handle form submission
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const rememberMe = document.getElementById("checkbox").checked;
+
+    if (rememberMe) {
+      localStorage.setItem("username", username);
+      localStorage.setItem("password", password);
+    } else {
+      localStorage.removeItem("username");
+      localStorage.removeItem("password");
+    }
+
+    alert(Logged in as ${username});
+  });
+
+  // Show "Login as existing user" button if user data exists
+  if (localStorage.getItem("username")) {
+    existingButton.style.display = "block";
+    existingButton.addEventListener("click", function () {
+      alert(Logged in as ${localStorage.getItem("username")});
+    });
+  }
+});
